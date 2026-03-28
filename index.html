@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>l.lvz | مهندس الأمن السيبراني</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ================== إعدادات عامة ================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Tajawal', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      direction: rtl;
+      padding: 2rem;
+      position: relative;
+      color: #fff;
+    }
+
+    /* ================== الخلفية ================== */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background-image: url('https://i.postimg.cc/fTvCBDfV/5840674512057784.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: none;
+      transform: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ================== البطاقة الرئيسية ================== */
+    .card {
+      max-width: 680px;
+      width: 100%;
+      background: rgba(10, 14, 24, 0.55);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin: 1.5rem auto;
+      position: relative;
+    }
+
+    /* ================== زر المشاركة ================== */
+    .share-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s;
+      z-index: 20;
+    }
+    .share-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.02);
+    }
+
+    /* ================== صورة البروفايل ================== */
+    .avatar-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ccc;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .avatar:hover { transform: scale(1.02); }
+
+    .avatar-glow {
+      position: absolute;
+      top: -5px; left: -5px; right: -5px; bottom: -5px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(100, 200, 255, 0.3), transparent 70%);
+      filter: blur(12px);
+      z-index: -1;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .avatar-container:hover .avatar-glow { opacity: 0.8; }
+
+    /* ================== النصوص الرئيسية ================== */
+    .name {
+      font-size: 2.3rem !important;            /* حجم أقل */
+      font-weight: 500;           /* وزن أقل (قصيف) */
+      background: linear-gradient(135deg, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.5px;
+      line-height: 0.8;
+    }
+
+    .badge {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.35);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 0.8rem;
+      backdrop-filter: blur(4px);
+      font-family: 'Hoefler Text', serif;
+    }
+
+    /* ================== التاغات ================== */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background: rgba(100, 200, 255, 0.08);
+      border: 1px solid rgba(100, 200, 255, 0.2);
+      border-radius: 60px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #f0f0f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      backdrop-filter: blur(4px);
+      transition: 0.2s;
+    }
+    .tag i { color: #a0c4ff; }
+    .tag:hover {
+      background: rgba(100, 200, 255, 0.15);
+      border-color: rgba(100, 200, 255, 0.4);
+    }
+
+    /* أيقونة إنستغرام */
+    .ig-icon {
+      font-size: 1.6rem;
+      margin: 0.2rem 0 1rem;
+      color: #fff;
+      transition: 0.2s;
+    }
+
+    /* ================== الآية والمقدمة ================== */
+    .verse, .intro {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1rem 0;
+      padding: 0;
+      background: none;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    .verse i, .intro i {
+      color: #a0c4ff;
+      font-size: 1rem;
+    }
+    .verse i { display: none; }
+    .verse { margin-bottom: 3.5rem; margin-top: 0.5rem; }
+    .intro { margin: 0.8rem 0; }
+
+    .verse p {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #e0e0e0;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      font-family: 'Amiri', serif;  /* خط مشابه لمصحفي، متوفر على Google Fonts */
+    }
+
+    .intro p {
+      font-size: 0.9rem;
+      color: #ddd;
+      line-height: 1.4;
+      margin: 0;
+      text-align: center;
+      max-width: 80%;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    }
+
+    /* ================== الأقسام القابلة للطي ================== */
+    .tips-module, .features-module {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      overflow: hidden;
+      border: 1px solid rgba(100, 200, 255, 0.25);
+      transition: all 0.2s;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #a0c4ff;
+      transition: 0.2s;
+      font-family: inherit;
+      gap: 1rem;
+    }
+
+    /* تأثير الضغط فقط (النقر) */
+    .toggle-btn:active {
+      background: rgba(100, 200, 255, 0.3);
+      transition: 0.05s;
+    }
+
+    .toggle-text { flex: 1; text-align: center; letter-spacing: 0.3px; }
+    .toggle-icon i { transition: transform 0.3s ease; font-size: 1rem; }
+
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+      padding: 0 1.5rem;
+    }
+
+    .toggle-btn.open .toggle-icon i { transform: rotate(180deg); }
+
+    /* تأثير النبض (يختفي تلقائياً عند الفتح) */
+    .toggle-btn:not(.open) .toggle-icon {
+      animation: gentlePulse 1.5s infinite;
+    }
+
+    @keyframes gentlePulse {
+      0% { opacity: 0.6; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(2px); }
+      100% { opacity: 0.6; transform: translateY(0); }
+    }
+
+    .tips-list, .features-list {
+      list-style: none;
+      padding: 0.5rem 0 0.2rem;
+      margin: 0;
+    }
+    .tips-list li, .features-list li {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: #f0f0f0;
+      text-align: right;
+    }
+    .tips-list li i, .features-list li i {
+      width: 1.3rem;
+      color: #a0c4ff;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .bonus-tip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.8rem;
+      color: #ffecb3;
+      border-top: 1px dashed rgba(100, 200, 255, 0.3);
+      padding-top: 0.7rem;
+    }
+    .bonus-tip i { font-size: 1rem; color: #a0c4ff; }
+
+    /* ================== زر إنستغرام ================== */
+    .insta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: linear-gradient(115deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      background-size: 150% auto;
+      border-radius: 60px;
+      padding: 0.7rem 1.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      margin: 1rem auto 0.5rem;
+      border: none;
+      width: fit-content;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .insta-btn:hover {
+      transform: scale(1.02);
+      background-position: right center;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .handle {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ================== استجابة للهواتف ================== */
+    @media (max-width: 550px) {
+      body { padding: 1rem; }
+      .card { padding: 1.5rem; }
+      .name { font-size: 1.7rem; }
+      .verse p { font-size: 0.9rem; }
+      .intro p { font-size: 0.8rem; max-width: 95%; }
+      .tag { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
+      .tips-list li, .features-list li { font-size: 0.75rem; }
+      .toggle-btn { padding: 0.8rem 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <main class="card">
+    <!-- زر المشاركة (سهم مائل للأعلى واليمين) -->
+    <div class="share-btn" id="shareBtn">
+      <i class="fas fa-share"></i>
+    </div>
+
+    <div class="avatar-container">
+      <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+      <div class="avatar-glow"></div>
+    </div>
+
+    <h1 class="name">l.lvz</h1>
+    <div class="badge">Eng.Maytham</div>
+
+    <div class="tags">
+      <span class="tag"><i class="fas fa-microscope"></i> هندسة أجهزة طبية 🎓</span>
+      <span class="tag"><i class="fas fa-shield-haltered"></i> أمن سيبراني 🛡</span>
+    </div>
+
+    <div class="ig-icon">
+      <i class="fab fa-instagram"></i>
+    </div>
+
+    <div class="verse">
+      <i class="fas fa-quote-right"></i>
+      <p>﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</p>
+    </div>
+
+    <!-- قسم النصائح (5 نصائح) -->
+    <div class="tips-module">
+      <button class="toggle-btn" id="tipsToggle">
+        <span class="toggle-text">نصائح لتأمين حساباتك</span>
+        <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="toggle-content" id="tipsContent">
+        <ul class="tips-list">
+          <li><i class="fas fa-ban"></i> عدم الضغط على روابط مشبوهة.</li>
+          <li><i class="fas fa-download"></i> لا تحمل أو تفتح أي ملف مشبوه قد يسرب بياناتك بالكامل.</li>
+          <li><i class="fas fa-mobile-alt"></i> فعّل الطبقة الإضافية (التحقق بخطوتين 2FA) في كل حساباتك.</li>
+          <li><i class="fas fa-key"></i> استخدم كلمات مرور طويلة ومعقدة (12 حرفاً+) على الأقل.</li>
+          <li><i class="fas fa-store"></i> <strong>عدم تثبيت تطبيقات خارجية خارج متجر بلاي أو App Store.</strong></li>
+        </ul>
+        <div class="bonus-tip">
+          <i class="fas fa-dice-d6"></i>
+          <span><strong>نصيحة إضافية:</strong> أحرص على عمل نسخ احتياطية لبياناتك.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- قسم الميزات (ميزتان) -->
+    <div class="features-module">
+      <button class="toggle-btn" id="featuresToggle">
+        <span class="toggle-text">الميزات الأكثر طلباً</span>
+        <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="toggle-content" id="featuresContent">
+        <ul class="features-list">
+          <li><i class="fas fa-user-secret"></i> <strong>ميزة إخفاء المتابعين في الإنستغرام</strong></li>
+        </ul>
+        <div style="padding: 0 0 0.8rem 0; text-align: right; font-size: 0.85rem; color: #ddd;">
+          <p style="margin-bottom: 0.5rem;">لطلب الميزة:</p>
+          <ol style="padding-right: 1.5rem; margin-bottom: 0.8rem;">
+            <li>ادخل إلى حسابك في إنستغرام.</li>
+            <li>اضغط على <strong><i class="fas fa-bars"></i> (الثلاث خطوط)</strong> أعلى الشاشة.</li>
+            <li>اختر <strong>Help</strong> → <strong>Report a problem</strong> → <strong>Report problem without shaking</strong>.</li>
+            <li>اختر <strong>Include and continue</strong>.</li>
+            <li>اكتب أو الصق النص الإنجليزي: <code style="background: rgba(0,0,0,0.5); padding: 0.2rem 0.4rem; border-radius: 8px;">Hello Instagram team, I would like to request hiding my followers list for privacy reasons. Please help me with this request. Thank you.</code></li>
+            <li>أرفق لقطة شاشة للمتابعين وأرسل الطلب. انتظر 24–48 ساعة.</li>
+          </ol>
+        </div>
+
+        <!-- الميزة الثانية: منع استخدام المحادثات لتدريب الذكاء الاصطناعي -->
+        <ul class="features-list">
+          <li><i class="fas fa-robot"></i> <strong>منع استخدام محادثاتك لتدريب الذكاء الاصطناعي في إنستغرام</strong></li>
+        </ul>
+        <div style="padding: 0 0 1rem 0; text-align: right; font-size: 0.85rem; color: #ddd;">
+          <p style="margin-bottom: 0.5rem;">الخطوات:</p>
+          <ol style="padding-right: 1.5rem;">
+            <li>افتح تطبيق إنستغرام واذهب إلى <strong>الإعدادات</strong> (⚙️).</li>
+            <li>اختر <strong>الخصوصية والأمان</strong> → <strong>الرسائل</strong>.</li>
+            <li>ابحث عن خيار <strong>السماح باستخدام رسائلك لتحسين الذكاء الاصطناعي</strong> (أو ما شابهه).</li>
+            <li>ألغِ تفعيله (قم بإيقاف التبديل).</li>
+          </ol>
+          <p style="margin-top: 0.6rem;">بهذا لن تُستخدم محادثاتك في تدريب نماذج الذكاء الاصطناعي الخاصة بإنستغرام.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr" class="insta-btn" target="_blank">
+      <i class="fab fa-instagram"></i>
+      <span>Instagram</span>
+    </a>
+    <div class="handle">@l.lvz</div>
+  </main>
+
+  <script>
+    // مشاركة الصفحة
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("تم نسخ الرابط إلى الحافظة");
+      }
+    });
+
+    // تفعيل عرض/إخفاء النصائح
+    const tipsToggle = document.getElementById('tipsToggle');
+    const tipsContent = document.getElementById('tipsContent');
+    tipsToggle.addEventListener('click', () => {
+      const isOpen = tipsContent.style.maxHeight && tipsContent.style.maxHeight !== '0px';
+      if (isOpen) {
+        tipsContent.style.maxHeight = '0px';
+        tipsToggle.classList.remove('open');
+      } else {
+        tipsContent.style.maxHeight = tipsContent.scrollHeight + 'px';
+        tipsToggle.classList.add('open');
+      }
+    });
+
+    // تفعيل عرض/إخفاء الميزات
+    const featuresToggle = document.getElementById('featuresToggle');
+    const featuresContent = document.getElementById('featuresContent');
+    featuresToggle.addEventListener('click', () => {
+      const isOpen = featuresContent.style.maxHeight && featuresContent.style.maxHeight !== '0px';
+      if (isOpen) {
+        featuresContent.style.maxHeight = '0px';
+        featuresToggle.classList.remove('open');
+      } else {
+        featuresContent.style.maxHeight = featuresContent.scrollHeight + 'px';
+        featuresToggle.classList.add('open');
+      }
+    });
+
+    // تأثير الضغط السريع (يضيف لوناً لحظياً ثم يزول)
+    const btns = document.querySelectorAll('.toggle-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('mousedown', () => {
+        btn.style.transition = 'background 0.05s';
+        btn.style.background = 'rgba(100, 200, 255, 0.3)';
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.style.transition = '';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
