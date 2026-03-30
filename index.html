@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>l.lvz | مهندس الأمن السيبراني</title>
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
@@ -18,17 +21,15 @@
 
     body {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: 'Tajawal', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       direction: rtl;
       padding: 2rem;
       position: relative;
       color: #fff;
+      background: transparent; 
     }
 
-    /* ================== الخلفية ================== */
+    /* ================== الخلفية العامة ================== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -40,8 +41,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      filter: none;
-      transform: none;
+      background-color: #0a0f1a; /* fallback color */
     }
 
     body::after {
@@ -56,64 +56,54 @@
       pointer-events: none;
     }
 
-    /* ================== البطاقة الرئيسية ================== */
-    .card {
-      max-width: 680px;
-      width: 100%;
-      background: rgba(10, 14, 24, 0.55);
-      backdrop-filter: blur(12px);
-      border-radius: 48px;
-      padding: 2rem;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-      text-align: center;
-      margin: 1.5rem auto;
-      position: relative;
-    }
-
-    /* ================== زر المشاركة ================== */
+    /* ================== زر المشاركة (ثابت أعلى اليمين) ================== */
     .share-btn {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       right: 1rem;
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: #e0e0e0;  /* لون رصاصي فاتح */
+      backdrop-filter: none;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.3rem;
-      color: #fff;
+      color: #000;          /* أيقونة سوداء */
       cursor: pointer;
-      transition: 0.2s;
-      z-index: 20;
+      transition: opacity 0.2s ease, transform 0.2s;
+      z-index: 1000;
+      opacity: 1;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     .share-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: #d0d0d0;
       transform: scale(1.02);
     }
 
     /* ================== صورة البروفايل ================== */
     .avatar-container {
       position: relative;
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 1rem;
-      margin-bottom: 1.5rem;
+      width: clamp(90px, 25vw, 120px);
+      height: clamp(90px, 25vw, 120px);
+      margin: 4rem auto 1rem;/* نزول كامل المحتوى */
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .avatar {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: 90%;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid #ccc;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s;
+      background: #2a2f3b;
     }
 
     .avatar:hover { transform: scale(1.02); }
@@ -130,10 +120,23 @@
     }
     .avatar-container:hover .avatar-glow { opacity: 0.8; }
 
+    /* ================== البطاقة التي تحتوي على باقي المحتوى ================== */
+    .card {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+    }
+
     /* ================== النصوص الرئيسية ================== */
     .name {
-      font-size: 2.3rem !important;            /* حجم أقل */
-      font-weight: 500;           /* وزن أقل (قصيف) */
+      font-size: 2.3rem !important;
+      font-weight: 500;
       background: linear-gradient(135deg, #fff);
       -webkit-background-clip: text;
       background-clip: text;
@@ -144,7 +147,7 @@
     }
 
     .badge {
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 3.5vw, 0.95rem);
       font-weight: 500;
       color: #ffffff;
       background: rgba(0, 0, 0, 0.35);
@@ -170,7 +173,7 @@
       border: 1px solid rgba(100, 200, 255, 0.2);
       border-radius: 60px;
       padding: 0.4rem 1rem;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 3vw, 0.85rem);
       font-weight: 500;
       color: #f0f0f0;
       display: inline-flex;
@@ -185,12 +188,18 @@
       border-color: rgba(100, 200, 255, 0.4);
     }
 
-    /* أيقونة إنستغرام */
-    .ig-icon {
-      font-size: 1.6rem;
+    /* أيقونة إنستغرام (رابط) */
+    .ig-icon {#42445A
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
       margin: 0.2rem 0 1rem;
       color: #fff;
       transition: 0.2s;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .ig-icon:active {
+      transform: scale(1.2);
+      transition: 0.05s;
     }
 
     /* ================== الآية والمقدمة ================== */
@@ -216,16 +225,16 @@
     .intro { margin: 0.8rem 0; }
 
     .verse p {
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
       font-weight: 500;
       color: #e0e0e0;
       margin: 0;
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-      font-family: 'Amiri', serif;  /* خط مشابه لمصحفي، متوفر على Google Fonts */
+      font-family: 'Amiri', serif;
     }
 
     .intro p {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 3vw, 0.9rem);
       color: #ddd;
       line-height: 1.4;
       margin: 0;
@@ -236,13 +245,15 @@
 
     /* ================== الأقسام القابلة للطي ================== */
     .tips-module, .features-module {
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(12px);
-      border-radius: 10px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      margin-bottom: 15px;
       margin: 1.2rem 0;
       overflow: hidden;
-      border: 1px solid rgba(100, 200, 255, 0.25);
-      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
     }
 
     .toggle-btn {
@@ -254,7 +265,7 @@
       justify-content: space-between;
       padding: 1rem 1.5rem;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
       font-weight: 600;
       color: #a0c4ff;
       transition: 0.2s;
@@ -262,7 +273,6 @@
       gap: 1rem;
     }
 
-    /* تأثير الضغط فقط (النقر) */
     .toggle-btn:active {
       background: rgba(100, 200, 255, 0.3);
       transition: 0.05s;
@@ -279,11 +289,7 @@
     }
 
     .toggle-btn.open .toggle-icon i { transform: rotate(180deg); }
-
-    /* تأثير النبض (يختفي تلقائياً عند الفتح) */
-    .toggle-btn:not(.open) .toggle-icon {
-      animation: gentlePulse 1.5s infinite;
-    }
+    .toggle-btn:not(.open) .toggle-icon { animation: gentlePulse 1.5s infinite; }
 
     @keyframes gentlePulse {
       0% { opacity: 0.6; transform: translateY(0); }
@@ -300,7 +306,7 @@
       display: flex;
       gap: 0.8rem;
       margin-bottom: 0.9rem;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 3vw, 0.85rem);
       line-height: 1.4;
       color: #f0f0f0;
       text-align: right;
@@ -324,65 +330,190 @@
     }
     .bonus-tip i { font-size: 1rem; color: #a0c4ff; }
 
-    /* ================== زر إنستغرام ================== */
-    .insta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      background: linear-gradient(115deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      background-size: 150% auto;
-      border-radius: 60px;
-      padding: 0.7rem 1.5rem;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      margin: 1rem auto 0.5rem;
-      border: none;
-      width: fit-content;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    .insta-btn:hover {
-      transform: scale(1.02);
-      background-position: right center;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    /* ================== نافذة المشاركة ================== */
+    .share-modal {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      height: 50vh;
+      background: white;
+      border-radius: 30px 30px 0 0;
+      z-index: 1000;
+      transition: bottom 0.3s ease;
+      box-shadow: 0 -5px 25px rgba(0,0,0,0.2);
+      direction: rtl;
+      font-family: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    .handle {
-      font-size: 0.7rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 0.3rem;
-      letter-spacing: 0.5px;
+    .share-modal.show {
+      bottom: 0;
     }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1rem 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-title {
+      flex: 1;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #333;
+      margin-right: -32px;
+    }
+
+    .modal-body {
+      flex: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .share-profile-card {
+      background: #2c2c2e;
+      border-radius: 30px;
+      padding: 1rem;
+      width: 90%;
+      max-width: 280px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .share-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 0.3px solid;
+      margin-bottom: 0.5rem;
+    }
+
+    .share-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: -0.2rem;
+    }
+
+    .share-badge {
+      font-size: 0.8rem;
+      color: #ffffff;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    /* شبكة أيقونات المشاركة – سطر واحد أفقي من اليسار إلى اليمين */
+    .share-icons-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      width: 100%;
+      direction: ltr;
+    }
+
+    .share-icon-item {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 70px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .share-icon-item:hover {
+      transform: scale(1.05);
+    }
+    .share-icon-item:active {
+      transform: scale(0.95);
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 0.4rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .icon-name {
+      font-size: 0.7rem;
+      color: #333;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* ألوان التطبيقات */
+    .circle-copy { background: #2c2c2e; }
+    .circle-x { background: #000000; }
+    .circle-facebook { background: #1877f2; }
+    .circle-whatsapp { background: #25d366; }
+    .circle-messenger { background: #0084ff; }
+    .circle-snapchat { background: #fffc00; color: #000; }
 
     /* ================== استجابة للهواتف ================== */
     @media (max-width: 550px) {
       body { padding: 1rem; }
-      .card { padding: 1.5rem; }
-      .name { font-size: 1.7rem; }
-      .verse p { font-size: 0.9rem; }
-      .intro p { font-size: 0.8rem; max-width: 95%; }
-      .tag { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
-      .tips-list li, .features-list li { font-size: 0.75rem; }
-      .toggle-btn { padding: 0.8rem 1rem; font-size: 0.9rem; }
+      .avatar-container {
+        margin-top: 1.5rem;   /* نزول مناسب للهواتف */
+      }
+      .verse p, .intro p { max-width: 95%; }
+      .toggle-btn { padding: 0.8rem 1rem; }
+      .share-profile-card { width: 95%; }
+      .share-icons-grid { gap: 0.8rem; }
+      .share-icon-item { width: 60px; }
+      .icon-circle { width: 50px; height: 50px; font-size: 1.5rem; }
+      .icon-name { font-size: 0.6rem; }
     }
   </style>
 </head>
 <body>
   <div class="animated-bg"></div>
+
+  <!-- زر المشاركة (ثابت أعلى اليمين) -->
+  <div class="share-btn" id="shareBtn">
+    <i class="fas fa-arrow-up-from-bracket"></i> <!-- أيقونة مربع بسهم للأعلى (تصدير/مشاركة) -->
+  </div>
+
+  <!-- صورة البروفايل -->
+  <div class="avatar-container">
+    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+    <div class="avatar-glow"></div>
+  </div>
+
   <main class="card">
-    <!-- زر المشاركة (سهم مائل للأعلى واليمين) -->
-    <div class="share-btn" id="shareBtn">
-      <i class="fas fa-share"></i>
-    </div>
-
-    <div class="avatar-container">
-      <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
-      <div class="avatar-glow"></div>
-    </div>
-
     <h1 class="name">l.lvz</h1>
     <div class="badge">Eng.Maytham</div>
 
@@ -391,7 +522,8 @@
       <span class="tag"><i class="fas fa-shield-haltered"></i> أمن سيبراني 🛡</span>
     </div>
 
-    <div class="ig-icon">
+    <!-- أيقونة إنستغرام (رابط) -->
+    <div class="ig-icon" id="instaIcon">
       <i class="fab fa-instagram"></i>
     </div>
 
@@ -400,7 +532,7 @@
       <p>﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</p>
     </div>
 
-    <!-- قسم النصائح (5 نصائح) -->
+    <!-- قسم النصائح -->
     <div class="tips-module">
       <button class="toggle-btn" id="tipsToggle">
         <span class="toggle-text">نصائح لتأمين حساباتك</span>
@@ -421,7 +553,7 @@
       </div>
     </div>
 
-    <!-- قسم الميزات (ميزتان) -->
+    <!-- قسم الميزات (الأول) -->
     <div class="features-module">
       <button class="toggle-btn" id="featuresToggle">
         <span class="toggle-text">الميزات الأكثر طلباً</span>
@@ -443,7 +575,6 @@
           </ol>
         </div>
 
-        <!-- الميزة الثانية: منع استخدام المحادثات لتدريب الذكاء الاصطناعي -->
         <ul class="features-list">
           <li><i class="fas fa-robot"></i> <strong>منع استخدام محادثاتك لتدريب الذكاء الاصطناعي في إنستغرام</strong></li>
         </ul>
@@ -460,29 +591,191 @@
       </div>
     </div>
 
-    <a href="https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr" class="insta-btn" target="_blank">
-      <i class="fab fa-instagram"></i>
-      <span>Instagram</span>
-    </a>
-    <div class="handle">@l.lvz</div>
+    <!-- قسم جديد: ميزات في الآيفون للحماية -->
+    <div class="features-module">
+      <button class="toggle-btn" id="iosFeaturesToggle">
+        <span class="toggle-text">ميزات في الآيفون للحماية</span>
+        <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="toggle-content" id="iosFeaturesContent">
+        <!-- الميزة الأولى: نمط المنع (Lockdown Mode) -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-shield-alt" style="color: #ffd966;"></i>
+            <strong style="color: #ffd966;">نمط المنع (Lockdown Mode)</strong>
+          </div>
+          <p style="font-size: 0.85rem; color: #ddd; margin-bottom: 0.5rem;">حماية قصوى ضد الهجمات الإلكترونية المتطورة. يعطل معظم ميزات التطبيقات والملفات لحماية الجهاز.</p>
+          <ol style="padding-right: 1.5rem; font-size: 0.8rem; color: #ccc;">
+            <li>افتح <strong>الإعدادات</strong>.</li>
+            <li>اختر <strong>الخصوصية والأمان</strong> → <strong>نمط المنع (Lockdown Mode)</strong>.</li>
+            <li>اضغط على <strong>تشغيل نمط المنع</strong>.</li>
+            <li>أعد تشغيل الجهاز (سيطلب لإكمال التفعيل).</li>
+          </ol>
+        </div>
+        <!-- الميزة الثانية: حماية الجهاز المسروق -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-lock" style="color: #ffd966;"></i>
+            <strong style="color: #ffd966;">حماية الجهاز المسروق (Stolen Device Protection)</strong>
+          </div>
+          <p style="font-size: 0.85rem; color: #ddd; margin-bottom: 0.5rem;">تمنع المتسلل الذي يعرف رمز المرور من تغيير إعدادات Apple ID أو الوصول لكلمات المرور دون Face ID.</p>
+          <ol style="padding-right: 1.5rem; font-size: 0.8rem; color: #ccc;">
+            <li>اذهب إلى <strong>الإعدادات</strong> → <strong>Face ID ورمز المرور</strong>.</li>
+            <li>أدخل رمز المرور الخاص بك.</li>
+            <li>ابحث عن <strong>حماية الجهاز المسروق</strong>.</li>
+            <li>فعّل الخيار (يجب أن يكون التفعيل تلقائياً في iOS 26.3.1، تأكد من أنه "تشغيل").</li>
+          </ol>
+        </div>
+        <!-- الميزة الثالثة: حماية البيانات المتقدمة -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-cloud-upload-alt" style="color: #ffd966;"></i>
+            <strong style="color: #ffd966;">حماية البيانات المتقدمة (Advanced Data Protection)</strong>
+          </div>
+          <p style="font-size: 0.85rem; color: #ddd; margin-bottom: 0.5rem;">تشفر بيانات iCloud (النسخ الاحتياطي، الصور، الملاحظات) بشكل كامل بحيث لا تستطيع Apple فك تشفيرها.</p>
+          <ol style="padding-right: 1.5rem; font-size: 0.8rem; color: #ccc;">
+            <li>افتح <strong>الإعدادات</strong> → [اسمك] → <strong>iCloud</strong>.</li>
+            <li>اضغط على <strong>حماية البيانات المتقدمة</strong>.</li>
+            <li>اتبع التعليمات لإعداد <strong>جهة اتصال للاسترداد</strong> أو <strong>مفتاح الاسترداد</strong> (ضروري).</li>
+            <li>بعد الإعداد، قم بتشغيل الميزة.</li>
+          </ol>
+        </div>
+        <!-- الميزة الرابعة: العثور على iPhone -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-map-marker-alt" style="color: #ffd966;"></i>
+            <strong style="color: #ffd966;">العثور على iPhone (Find My iPhone)</strong>
+          </div>
+          <p style="font-size: 0.85rem; color: #ddd; margin-bottom: 0.5rem;">يساعدك على تتبع الجهاز المفقود أو المسروق وقفله عن بُعد.</p>
+          <ol style="padding-right: 1.5rem; font-size: 0.8rem; color: #ccc;">
+            <li>اذهب إلى <strong>الإعدادات</strong> → [اسمك] → <strong>البحث</strong>.</li>
+            <li>اختر <strong>البحث عن iPhone</strong>.</li>
+            <li>فعّل <strong>البحث عن iPhone</strong> و <strong>شبكة البحث</strong> (للبحث حتى عند انقطاع البطارية).</li>
+            <li>فعّل أيضاً <strong>إرسال آخر موقع</strong> لإرسال الموقع عند نفاد البطارية.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <!-- نافذة المشاركة -->
+  <div class="share-modal" id="shareModal">
+    <div class="modal-header">
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+      <div class="modal-title">Share safetyport-secure</div>
+      <div style="width: 32px;"></div>
+    </div>
+    <div class="modal-body">
+      <div class="share-profile-card">
+        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile">
+        <div class="share-name">l.lvz</div>
+        <div class="share-badge">Eng.Maytham</div>
+      </div>
+      <div class="share-icons-grid">
+        <!-- Copy Linktree -->
+        <div class="share-icon-item" id="copyLinkBtn">
+          <div class="icon-circle circle-copy"><i class="fas fa-link"></i></div>
+          <div class="icon-name">Copy Linktree</div>
+        </div>
+        <!-- X (Twitter) -->
+        <div class="share-icon-item" id="twitterBtn">
+          <div class="icon-circle circle-x"><i class="fab fa-twitter"></i></div>
+          <div class="icon-name">X</div>
+        </div>
+        <!-- Facebook -->
+        <div class="share-icon-item" id="facebookBtn">
+          <div class="icon-circle circle-facebook"><i class="fab fa-facebook-f"></i></div>
+          <div class="icon-name">Facebook</div>
+        </div>
+        <!-- WhatsApp -->
+        <div class="share-icon-item" id="whatsappBtn">
+          <div class="icon-circle circle-whatsapp"><i class="fab fa-whatsapp"></i></div>
+          <div class="icon-name">WhatsApp</div>
+        </div>
+        <!-- Messenger -->
+        <div class="share-icon-item" id="messengerBtn">
+          <div class="icon-circle circle-messenger"><i class="fab fa-facebook-messenger"></i></div>
+          <div class="icon-name">Messenger</div>
+        </div>
+        <!-- Snapchat -->
+        <div class="share-icon-item" id="snapchatBtn">
+          <div class="icon-circle circle-snapchat"><i class="fab fa-snapchat-ghost"></i></div>
+          <div class="icon-name">Snapchat</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // مشاركة الصفحة
+    // تأثير اختفاء زر المشاركة عند التمرير لأسفل وظهوره عند التمرير لأعلى
+    let lastScrollY = window.scrollY;
     const shareBtn = document.getElementById('shareBtn');
-    shareBtn.addEventListener('click', () => {
-      if (navigator.share) {
-        navigator.share({
-          title: document.title,
-          url: window.location.href
-        }).catch(() => {});
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // تمرير لأسفل: إخفاء سريع
+        shareBtn.style.opacity = '0';
+        shareBtn.style.transition = 'opacity 0.15s ease';
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert("تم نسخ الرابط إلى الحافظة");
+        // تمرير لأعلى: إظهار
+        shareBtn.style.opacity = '1';
       }
+      lastScrollY = currentScrollY;
     });
 
-    // تفعيل عرض/إخفاء النصائح
+    // فتح/إغلاق نافذة المشاركة
+    const modal = document.getElementById('shareModal');
+    const closeModal = document.getElementById('closeModalBtn');
+    shareBtn.addEventListener('click', () => {
+      modal.classList.add('show');
+    });
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('show');
+    });
+
+    // أيقونة إنستغرام: رابط مع تأثير تكبير
+    const instaIcon = document.getElementById('instaIcon');
+    const instaUrl = 'https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr';
+    instaIcon.addEventListener('click', () => {
+      instaIcon.style.transform = 'scale(1.2)';
+      setTimeout(() => { instaIcon.style.transform = ''; }, 100);
+      window.open(instaUrl, '_blank');
+    });
+
+    // وظائف المشاركة
+    const currentUrl = window.location.href;
+
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        alert('تم نسخ الرابط إلى الحافظة');
+      });
+    });
+
+    function shareTo(url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    document.getElementById('twitterBtn').addEventListener('click', () => {
+      shareTo(`https://twitter.com/intent/tweet?text=تصفح موقع l.lvz للأمن السيبراني&url=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('facebookBtn').addEventListener('click', () => {
+      shareTo(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('whatsappBtn').addEventListener('click', () => {
+      shareTo(`https://wa.me/?text=${encodeURIComponent('تصفح موقع l.lvz للأمن السيبراني: ' + currentUrl)}`);
+    });
+    document.getElementById('messengerBtn').addEventListener('click', () => {
+      shareTo(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('snapchatBtn').addEventListener('click', () => {
+      window.open('https://www.snapchat.com/add', '_blank');
+    });
+
+    // النصائح والميزات
     const tipsToggle = document.getElementById('tipsToggle');
     const tipsContent = document.getElementById('tipsContent');
     tipsToggle.addEventListener('click', () => {
@@ -496,7 +789,6 @@
       }
     });
 
-    // تفعيل عرض/إخفاء الميزات
     const featuresToggle = document.getElementById('featuresToggle');
     const featuresContent = document.getElementById('featuresContent');
     featuresToggle.addEventListener('click', () => {
@@ -510,7 +802,20 @@
       }
     });
 
-    // تأثير الضغط السريع (يضيف لوناً لحظياً ثم يزول)
+    // قسم ميزات الآيفون
+    const iosToggle = document.getElementById('iosFeaturesToggle');
+    const iosContent = document.getElementById('iosFeaturesContent');
+    iosToggle.addEventListener('click', () => {
+      const isOpen = iosContent.style.maxHeight && iosContent.style.maxHeight !== '0px';
+      if (isOpen) {
+        iosContent.style.maxHeight = '0px';
+        iosToggle.classList.remove('open');
+      } else {
+        iosContent.style.maxHeight = iosContent.scrollHeight + 'px';
+        iosToggle.classList.add('open');
+      }
+    });
+
     const btns = document.querySelectorAll('.toggle-btn');
     btns.forEach(btn => {
       btn.addEventListener('mousedown', () => {
