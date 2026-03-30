@@ -189,16 +189,17 @@
     }
 
     /* أيقونة إنستغرام (رابط) */
-    .ig-icon {#42445A
-      font-size: clamp(1.4rem, 5vw, 1.8rem);
-      margin: 0.2rem 0 1rem;
-      color: #fff;
-      transition: 0.2s;
-      display: inline-block;
-      cursor: pointer;
-    }
+    .ig-icon {
+  font-size: clamp(1.8rem, 6vw, 2.2rem); /* حجم مشابه للمواقع الرسمية */
+  margin: 0.6rem 0 2rem;                /* المسافة من الأعلى والأسفل */
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  display: inline-block;
+  cursor: pointer;
+}
+
     .ig-icon:active {
-      transform: scale(1.2);
+      transform: scale(1.1);
       transition: 0.05s;
     }
 
@@ -268,7 +269,7 @@
       font-size: clamp(0.9rem, 3.5vw, 1rem);
       font-weight: 600;
       color: #a0c4ff;
-      transition: 0.2s;
+      transition: background 0.1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       font-family: inherit;
       gap: 1rem;
     }
@@ -279,12 +280,16 @@
     }
 
     .toggle-text { flex: 1; text-align: center; letter-spacing: 0.3px; }
-    .toggle-icon i { transition: transform 0.3s ease; font-size: 1rem; }
+    .toggle-icon i {
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      will-change: transform;
+    }
 
     .toggle-content {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+      will-change: max-height;
       padding: 0 1.5rem;
     }
 
@@ -340,7 +345,8 @@
       background: white;
       border-radius: 30px 30px 0 0;
       z-index: 1000;
-      transition: bottom 0.3s ease;
+      transition: bottom 0.35s cubic-bezier(0.33, 1, 0.68, 1); 
+      will-change: bottom;
       box-shadow: 0 -5px 25px rgba(0,0,0,0.2);
       direction: rtl;
       font-family: inherit;
@@ -433,10 +439,10 @@
       flex-wrap: nowrap;
       justify-content: flex-start;
       gap: 1rem;
-      overflow-x: auto;
       padding-bottom: 0.5rem;
       width: 100%;
       direction: ltr;
+      overflow: visible; /* يسمح للأيقونات بالتكبير دون قص */ 
     }
 
     .share-icon-item {
@@ -447,6 +453,10 @@
       width: 70px;
       cursor: pointer;
       transition: transform 0.2s;
+      overflow: visible;
+      transform-origin: center center;
+      transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      will-change: transform;
     }
     .share-icon-item:hover {
       transform: scale(1.05);
@@ -829,4 +839,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
