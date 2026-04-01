@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- ✅ حل مشكلة حظر الصور: إلغاء إرسال عنوان المرجع (referrer) -->
+  <meta name="referrer" content="no-referrer">
   <title>l.lvz | مهندس الأمن السيبراني</title>
   <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -89,7 +91,7 @@
       width: clamp(90px, 25vw, 120px);
       height: clamp(90px, 25vw, 120px);
       /* 🔽 لتعديل المسافة بين أعلى الصفحة والصورة: غيّر قيمة margin-top (الرقم الأول) */
-      margin: 25rem auto 1rem; /* تمت الزيادة من 4rem إلى 5rem */
+      margin: 100rem auto 1rem; /* تمت الزيادة إلى 7rem لضمان تغيير واضح */
       z-index: 1;
       display: flex;
       justify-content: center;
@@ -170,8 +172,8 @@
     }
 
     .tag {
-      background: rgba(255, 215, 0, 0.08);     /* تغيير الخلفية لتناسب الحواف الذهبية */
-      border: 1px solid rgba(255, 215, 0, 0.2); /* لون الحواف عُدِّل إلى الذهبي */
+      background: rgba(255, 215, 0, 0.08);     /* خلفية ذهبية خفيفة */
+      border: 1px solid rgba(255, 215, 0, 0.2); /* حواف ذهبية كما طلب المستخدم سابقاً */
       border-radius: 60px;
       padding: 0.4rem 1rem;
       font-size: clamp(0.75rem, 3vw, 0.85rem);
@@ -181,11 +183,9 @@
       align-items: center;
       gap: 0.5rem;
       backdrop-filter: blur(4px);
-      /* إزالة تأثيرات hover و active */
-      transition: none;
+      transition: none; /* إلغاء أي تأثير hover */
     }
-    .tag i { color: #ffd966; }  /* أيقونة ذهبية لتتناسب مع الحواف */
-    /* تم إلغاء :hover و :active بالكامل */
+    .tag i { color: #ffd966; }  /* أيقونة ذهبية */
 
     /* أيقونة إنستغرام (رابط) */
     .ig-icon {
@@ -246,14 +246,13 @@
     /* ================== الأقسام القابلة للطي ================== */
     .tips-module, .features-module {
       width: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      margin-bottom: 15px;
+      background: rgba(0, 0, 0, 0.45);          /* إعادة الخلفية الأصلية (بدلاً من 0.75) */
+      backdrop-filter: blur(12px);               /* إعادة التمويه الأصلي */
+      border-radius: 10px;                      /* إعادة التقوس الأصلي */
       margin: 1.2rem 0;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(100, 200, 255, 0.25); /* إعادة لون الحواف الأزرق الفاتح الأصلي */
+      transition: all 0.2s ease;
     }
 
     .toggle-btn {
@@ -506,7 +505,7 @@
     @media (max-width: 550px) {
       body { padding: 1rem; }
       .avatar-container {
-        margin-top: 2rem;   /* تعديل للمسافة على الشاشات الصغيرة */
+        margin-top: 3rem;   /* تعديل للمسافة على الشاشات الصغيرة */
       }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
@@ -671,7 +670,7 @@
       </div>
     </div>
 
-    <!-- ✅ حقوق النشر (أُضيفت في الأسفل) -->
+    <!-- ✅ حقوق النشر -->
     <div class="copyright">
       © ENG. MAYTHAM | ALL RIGHTS RESERVED
     </div>
