@@ -88,7 +88,8 @@
       position: relative;
       width: clamp(90px, 25vw, 120px);
       height: clamp(90px, 25vw, 120px);
-      margin: 4rem auto 1rem;/* نزول كامل المحتوى */
+      /* 🔽 لتعديل المسافة بين أعلى الصفحة والصورة: غيّر قيمة margin-top (الرقم الأول) */
+      margin: 5rem auto 1rem; /* تمت الزيادة من 4rem إلى 5rem */
       z-index: 1;
       display: flex;
       justify-content: center;
@@ -169,8 +170,8 @@
     }
 
     .tag {
-      background: rgba(100, 200, 255, 0.08);
-      border: 1px solid rgba(100, 200, 255, 0.2);
+      background: rgba(255, 215, 0, 0.08);     /* تغيير الخلفية لتناسب الحواف الذهبية */
+      border: 1px solid rgba(255, 215, 0, 0.2); /* لون الحواف عُدِّل إلى الذهبي */
       border-radius: 60px;
       padding: 0.4rem 1rem;
       font-size: clamp(0.75rem, 3vw, 0.85rem);
@@ -180,23 +181,21 @@
       align-items: center;
       gap: 0.5rem;
       backdrop-filter: blur(4px);
-      transition: 0.2s;
+      /* إزالة تأثيرات hover و active */
+      transition: none;
     }
-    .tag i { color: #a0c4ff; }
-    .tag:hover {
-      background: rgba(100, 200, 255, 0.15);
-      border-color: rgba(100, 200, 255, 0.4);
-    }
+    .tag i { color: #ffd966; }  /* أيقونة ذهبية لتتناسب مع الحواف */
+    /* تم إلغاء :hover و :active بالكامل */
 
     /* أيقونة إنستغرام (رابط) */
     .ig-icon {
-  font-size: clamp(1.8rem, 6vw, 2.2rem); /* حجم مشابه للمواقع الرسمية */
-  margin: 0.6rem 0 2rem;                /* المسافة من الأعلى والأسفل */
-  color: #fff;
-  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  display: inline-block;
-  cursor: pointer;
-}
+      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      margin: 0.6rem 0 2rem;
+      color: #fff;
+      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: inline-block;
+      cursor: pointer;
+    }
 
     .ig-icon:active {
       transform: scale(1.1);
@@ -432,7 +431,7 @@
       border-radius: 20px;
     }
 
-    /* شبكة أيقونات المشاركة – سطر واحد أفقي من اليسار إلى اليمين */
+    /* شبكة أيقونات المشاركة */
     .share-icons-grid {
       display: flex;
       flex-direction: row;
@@ -442,7 +441,7 @@
       padding-bottom: 0.5rem;
       width: 100%;
       direction: ltr;
-      overflow: visible; /* يسمح للأيقونات بالتكبير دون قص */ 
+      overflow: visible;
     }
 
     .share-icon-item {
@@ -452,7 +451,6 @@
       align-items: center;
       width: 70px;
       cursor: pointer;
-      transition: transform 0.2s;
       overflow: visible;
       transform-origin: center center;
       transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -493,11 +491,22 @@
     .circle-messenger { background: #0084ff; }
     .circle-snapchat { background: #fffc00; color: #000; }
 
+    /* ================== حقوق النشر ================== */
+    .copyright {
+      margin-top: 2rem;
+      padding: 1rem 0 0.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.6);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-family: 'Inter', monospace;
+    }
+
     /* ================== استجابة للهواتف ================== */
     @media (max-width: 550px) {
       body { padding: 1rem; }
       .avatar-container {
-        margin-top: 1.5rem;   /* نزول مناسب للهواتف */
+        margin-top: 2rem;   /* تعديل للمسافة على الشاشات الصغيرة */
       }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
@@ -512,14 +521,14 @@
 <body>
   <div class="animated-bg"></div>
 
-  <!-- زر المشاركة (ثابت أعلى اليمين) -->
+  <!-- زر المشاركة -->
   <div class="share-btn" id="shareBtn">
-    <i class="fas fa-arrow-up-from-bracket"></i> <!-- أيقونة مربع بسهم للأعلى (تصدير/مشاركة) -->
+    <i class="fas fa-arrow-up-from-bracket"></i>
   </div>
 
   <!-- صورة البروفايل -->
   <div class="avatar-container">
-    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" referrerpolicy="no-referrer" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
     <div class="avatar-glow"></div>
   </div>
 
@@ -532,7 +541,6 @@
       <span class="tag"><i class="fas fa-shield-haltered"></i> أمن سيبراني 🛡</span>
     </div>
 
-    <!-- أيقونة إنستغرام (رابط) -->
     <div class="ig-icon" id="instaIcon">
       <i class="fab fa-instagram"></i>
     </div>
@@ -601,14 +609,13 @@
       </div>
     </div>
 
-    <!-- قسم جديد: ميزات في الآيفون للحماية -->
+    <!-- قسم ميزات الآيفون -->
     <div class="features-module">
       <button class="toggle-btn" id="iosFeaturesToggle">
         <span class="toggle-text">ميزات في الآيفون للحماية</span>
         <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
       </button>
       <div class="toggle-content" id="iosFeaturesContent">
-        <!-- الميزة الأولى: نمط المنع (Lockdown Mode) -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-shield-alt" style="color: #ffd966;"></i>
@@ -622,7 +629,6 @@
             <li>أعد تشغيل الجهاز (سيطلب لإكمال التفعيل).</li>
           </ol>
         </div>
-        <!-- الميزة الثانية: حماية الجهاز المسروق -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-lock" style="color: #ffd966;"></i>
@@ -636,7 +642,6 @@
             <li>فعّل الخيار (يجب أن يكون التفعيل تلقائياً في iOS 26.3.1، تأكد من أنه "تشغيل").</li>
           </ol>
         </div>
-        <!-- الميزة الثالثة: حماية البيانات المتقدمة -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-cloud-upload-alt" style="color: #ffd966;"></i>
@@ -650,7 +655,6 @@
             <li>بعد الإعداد، قم بتشغيل الميزة.</li>
           </ol>
         </div>
-        <!-- الميزة الرابعة: العثور على iPhone -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-map-marker-alt" style="color: #ffd966;"></i>
@@ -666,6 +670,11 @@
         </div>
       </div>
     </div>
+
+    <!-- ✅ حقوق النشر (أُضيفت في الأسفل) -->
+    <div class="copyright">
+      © ENG. MAYTHAM | ALL RIGHTS RESERVED
+    </div>
   </main>
 
   <!-- نافذة المشاركة -->
@@ -677,37 +686,31 @@
     </div>
     <div class="modal-body">
       <div class="share-profile-card">
-        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile">
+        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" referrerpolicy="no-referrer">
         <div class="share-name">l.lvz</div>
         <div class="share-badge">Eng.Maytham</div>
       </div>
       <div class="share-icons-grid">
-        <!-- Copy Linktree -->
         <div class="share-icon-item" id="copyLinkBtn">
           <div class="icon-circle circle-copy"><i class="fas fa-link"></i></div>
           <div class="icon-name">Copy Linktree</div>
         </div>
-        <!-- X (Twitter) -->
         <div class="share-icon-item" id="twitterBtn">
           <div class="icon-circle circle-x"><i class="fab fa-twitter"></i></div>
           <div class="icon-name">X</div>
         </div>
-        <!-- Facebook -->
         <div class="share-icon-item" id="facebookBtn">
           <div class="icon-circle circle-facebook"><i class="fab fa-facebook-f"></i></div>
           <div class="icon-name">Facebook</div>
         </div>
-        <!-- WhatsApp -->
         <div class="share-icon-item" id="whatsappBtn">
           <div class="icon-circle circle-whatsapp"><i class="fab fa-whatsapp"></i></div>
           <div class="icon-name">WhatsApp</div>
         </div>
-        <!-- Messenger -->
         <div class="share-icon-item" id="messengerBtn">
           <div class="icon-circle circle-messenger"><i class="fab fa-facebook-messenger"></i></div>
           <div class="icon-name">Messenger</div>
         </div>
-        <!-- Snapchat -->
         <div class="share-icon-item" id="snapchatBtn">
           <div class="icon-circle circle-snapchat"><i class="fab fa-snapchat-ghost"></i></div>
           <div class="icon-name">Snapchat</div>
@@ -717,18 +720,16 @@
   </div>
 
   <script>
-    // تأثير اختفاء زر المشاركة عند التمرير لأسفل وظهوره عند التمرير لأعلى
+    // تأثير اختفاء زر المشاركة عند التمرير
     let lastScrollY = window.scrollY;
     const shareBtn = document.getElementById('shareBtn');
 
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // تمرير لأسفل: إخفاء سريع
         shareBtn.style.opacity = '0';
         shareBtn.style.transition = 'opacity 0.15s ease';
       } else {
-        // تمرير لأعلى: إظهار
         shareBtn.style.opacity = '1';
       }
       lastScrollY = currentScrollY;
@@ -747,7 +748,7 @@
       if (e.target === modal) modal.classList.remove('show');
     });
 
-    // أيقونة إنستغرام: رابط مع تأثير تكبير
+    // أيقونة إنستغرام
     const instaIcon = document.getElementById('instaIcon');
     const instaUrl = 'https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr';
     instaIcon.addEventListener('click', () => {
@@ -785,7 +786,7 @@
       window.open('https://www.snapchat.com/add', '_blank');
     });
 
-    // النصائح والميزات
+    // وظائف الأقسام القابلة للطي
     const tipsToggle = document.getElementById('tipsToggle');
     const tipsContent = document.getElementById('tipsContent');
     tipsToggle.addEventListener('click', () => {
@@ -812,7 +813,6 @@
       }
     });
 
-    // قسم ميزات الآيفون
     const iosToggle = document.getElementById('iosFeaturesToggle');
     const iosContent = document.getElementById('iosFeaturesContent');
     iosToggle.addEventListener('click', () => {
@@ -839,4 +839,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
