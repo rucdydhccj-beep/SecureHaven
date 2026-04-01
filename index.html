@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <!-- ✅ حل مشكلة حظر الصور: إلغاء إرسال عنوان المرجع (referrer) -->
   <meta name="referrer" content="no-referrer">
   <title>l.lvz | مهندس الأمن السيبراني</title>
-  <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- Google Fonts -->
@@ -39,11 +37,11 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background-image: url('https://i.postimg.cc/fTvCBDfV/5840674512057784.jpg');
+      background-image: url('https://i.imgur.com/DJb8y8A.jpg'); /* رابط بديل يعمل بدون referrer */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-color: #0a0f1a; /* fallback color */
+      background-color: #0a0f1a;
     }
 
     body::after {
@@ -58,7 +56,7 @@
       pointer-events: none;
     }
 
-    /* ================== زر المشاركة (ثابت أعلى اليمين) ================== */
+    /* ================== زر المشاركة ================== */
     .share-btn {
       position: fixed;
       top: 1rem;
@@ -66,14 +64,14 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #e0e0e0;  /* لون رصاصي فاتح */
+      background: #e0e0e0;
       backdrop-filter: none;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.3rem;
-      color: #000;          /* أيقونة سوداء */
+      color: #000;
       cursor: pointer;
       transition: opacity 0.2s ease, transform 0.2s;
       z-index: 1000;
@@ -90,8 +88,8 @@
       position: relative;
       width: clamp(90px, 25vw, 120px);
       height: clamp(90px, 25vw, 120px);
-      /* 🔽 لتعديل المسافة بين أعلى الصفحة والصورة: غيّر قيمة margin-top (الرقم الأول) */
-      margin: 4rem auto 1rem; /* تمت الزيادة إلى 7rem لضمان تغيير واضح */
+      /* المسافة من أعلى الصفحة ثابتة ب px لجميع الشاشات */
+      margin: 110px auto 1rem;
       z-index: 1;
       display: flex;
       justify-content: center;
@@ -123,7 +121,7 @@
     }
     .avatar-container:hover .avatar-glow { opacity: 0.8; }
 
-    /* ================== البطاقة التي تحتوي على باقي المحتوى ================== */
+    /* ================== البطاقة ================== */
     .card {
       max-width: 680px;
       width: 100%;
@@ -162,7 +160,7 @@
       font-family: 'Hoefler Text', serif;
     }
 
-    /* ================== التاغات ================== */
+    /* ================== التاغات (تم إعادتها إلى اللون الأزرق الأصلي) ================== */
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -172,22 +170,22 @@
     }
 
     .tag {
-      background: rgba(255, 215, 0, 0.08);     /* خلفية ذهبية خفيفة */
-      border: 1px solid rgba(255, 215, 0, 0.2); /* حواف ذهبية كما طلب المستخدم سابقاً */
+      background: rgba(100, 200, 255, 0.08);
+      border: 1px solid rgba(100, 200, 255, 0.2);
       border-radius: 60px;
       padding: 0.4rem 1rem;
       font-size: clamp(0.75rem, 3vw, 0.85rem);
       font-weight: 500;
-      color: #f0f0f0;
+      color: #a0c4ff;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       backdrop-filter: blur(4px);
-      transition: none; /* إلغاء أي تأثير hover */
+      transition: none;
     }
-    .tag i { color: #ffd966; }  /* أيقونة ذهبية */
+    .tag i { color: #a0c4ff; }
 
-    /* أيقونة إنستغرام (رابط) */
+    /* أيقونة إنستغرام */
     .ig-icon {
       font-size: clamp(1.8rem, 6vw, 2.2rem);
       margin: 0.6rem 0 2rem;
@@ -196,7 +194,6 @@
       display: inline-block;
       cursor: pointer;
     }
-
     .ig-icon:active {
       transform: scale(1.1);
       transition: 0.05s;
@@ -243,15 +240,15 @@
       text-shadow: 0 1px 1px rgba(0,0,0,0.2);
     }
 
-    /* ================== الأقسام القابلة للطي ================== */
+    /* ================== الأقسام القابلة للطي (الأزرق الأصلي) ================== */
     .tips-module, .features-module {
       width: 100%;
-      background: rgba(0, 0, 0, 0.45);          /* إعادة الخلفية الأصلية (بدلاً من 0.75) */
-      backdrop-filter: blur(12px);               /* إعادة التمويه الأصلي */
-      border-radius: 10px;                      /* إعادة التقوس الأصلي */
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      border-radius: 10px;
       margin: 1.2rem 0;
       overflow: hidden;
-      border: 1px solid rgba(100, 200, 255, 0.25); /* إعادة لون الحواف الأزرق الفاتح الأصلي */
+      border: 1px solid rgba(100, 200, 255, 0.25);
       transition: all 0.2s ease;
     }
 
@@ -504,8 +501,9 @@
     /* ================== استجابة للهواتف ================== */
     @media (max-width: 550px) {
       body { padding: 1rem; }
+      /* المحافظة على نفس المسافة العلوية للصورة (110px) */
       .avatar-container {
-        margin-top: 3rem;   /* تعديل للمسافة على الشاشات الصغيرة */
+        margin-top: 110px;
       }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
@@ -525,9 +523,9 @@
     <i class="fas fa-arrow-up-from-bracket"></i>
   </div>
 
-  <!-- صورة البروفايل -->
+  <!-- صورة البروفايل (رابط بديل يعمل بدون referrer) -->
   <div class="avatar-container">
-    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" referrerpolicy="no-referrer" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+    <img class="avatar" src="https://i.imgur.com/5S5y6kU.jpg" alt="Profile" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
     <div class="avatar-glow"></div>
   </div>
 
@@ -670,7 +668,6 @@
       </div>
     </div>
 
-    <!-- ✅ حقوق النشر -->
     <div class="copyright">
       © ENG. MAYTHAM | ALL RIGHTS RESERVED
     </div>
@@ -685,7 +682,7 @@
     </div>
     <div class="modal-body">
       <div class="share-profile-card">
-        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" referrerpolicy="no-referrer">
+        <img class="share-avatar" src="https://i.imgur.com/5S5y6kU.jpg" alt="Profile" referrerpolicy="no-referrer" crossorigin="anonymous">
         <div class="share-name">l.lvz</div>
         <div class="share-badge">Eng.Maytham</div>
       </div>
