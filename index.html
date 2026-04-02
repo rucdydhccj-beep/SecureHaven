@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <!-- ✅ منع إرسال المرجع لضمان ظهور الصور في كل المتصفحات -->
   <meta name="referrer" content="no-referrer">
   <title>l.lvz | مهندس الأمن السيبراني</title>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ================== إعدادات عامة ================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* نفس الـ CSS السابق (لم يتغير) */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       min-height: 100vh;
       font-family: 'Tajawal', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -27,10 +19,8 @@
       padding: 2rem;
       position: relative;
       color: #fff;
-      background: transparent; 
+      background: transparent;
     }
-
-    /* ================== الخلفية العامة ================== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -38,13 +28,13 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background-image: url('https://i.postimg.cc/fTvCBDfV/5840674512057784.jpg');
+      /* ✅ استبدل هذا الرابط برابط خلفيتك بعد رفعها على Imgur */
+      background-image: url('https://i.imgur.com/DJb8y8A.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-color: #0a0f1a;
     }
-
     body::after {
       content: "";
       position: fixed;
@@ -56,8 +46,6 @@
       z-index: -1;
       pointer-events: none;
     }
-
-    /* ================== زر المشاركة ================== */
     .share-btn {
       position: fixed;
       top: 1rem;
@@ -79,12 +67,7 @@
       opacity: 1;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .share-btn:hover {
-      background: #d0d0d0;
-      transform: scale(1.02);
-    }
-
-    /* ================== صورة البروفايل ================== */
+    .share-btn:hover { background: #d0d0d0; transform: scale(1.02); }
     .avatar-container {
       position: relative;
       width: clamp(90px, 25vw, 120px);
@@ -95,7 +78,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .avatar {
       width: 90%;
       height: 90%;
@@ -106,9 +88,7 @@
       transition: transform 0.2s;
       background: #2a2f3b;
     }
-
     .avatar:hover { transform: scale(1.02); }
-
     .avatar-glow {
       position: absolute;
       top: -5px; left: -5px; right: -5px; bottom: -5px;
@@ -120,8 +100,6 @@
       transition: opacity 0.3s;
     }
     .avatar-container:hover .avatar-glow { opacity: 0.8; }
-
-    /* ================== البطاقة ================== */
     .card {
       max-width: 680px;
       width: 100%;
@@ -133,8 +111,6 @@
       border: none;
       box-shadow: none;
     }
-
-    /* ================== النصوص الرئيسية ================== */
     .name {
       font-size: 2.3rem !important;
       font-weight: 500;
@@ -146,7 +122,6 @@
       letter-spacing: -0.5px;
       line-height: 0.8;
     }
-
     .badge {
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
       font-weight: 500;
@@ -159,8 +134,6 @@
       backdrop-filter: blur(4px);
       font-family: 'Hoefler Text', serif;
     }
-
-    /* ================== التاغات (لون أزرق فاتح أصلي) ================== */
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -168,7 +141,6 @@
       gap: 0.6rem;
       margin-bottom: 1rem;
     }
-
     .tag {
       background: rgba(100, 200, 255, 0.08);
       border: 1px solid rgba(100, 200, 255, 0.2);
@@ -184,8 +156,6 @@
       transition: none;
     }
     .tag i { color: #a0c4ff; }
-
-    /* أيقونة إنستغرام */
     .ig-icon {
       font-size: clamp(1.8rem, 6vw, 2.2rem);
       margin: 0.6rem 0 2rem;
@@ -194,12 +164,7 @@
       display: inline-block;
       cursor: pointer;
     }
-    .ig-icon:active {
-      transform: scale(1.1);
-      transition: 0.05s;
-    }
-
-    /* ================== الآية والمقدمة ================== */
+    .ig-icon:active { transform: scale(1.1); transition: 0.05s; }
     .verse, .intro {
       display: flex;
       align-items: center;
@@ -212,15 +177,10 @@
       border: none;
       box-shadow: none;
     }
-
-    .verse i, .intro i {
-      color: #a0c4ff;
-      font-size: 1rem;
-    }
+    .verse i, .intro i { color: #a0c4ff; font-size: 1rem; }
     .verse i { display: none; }
     .verse { margin-bottom: 3.5rem; margin-top: 0.5rem; }
     .intro { margin: 0.8rem 0; }
-
     .verse p {
       font-size: clamp(0.9rem, 3.5vw, 1rem);
       font-weight: 500;
@@ -229,7 +189,6 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
       font-family: 'Amiri', serif;
     }
-
     .intro p {
       font-size: clamp(0.8rem, 3vw, 0.9rem);
       color: #ddd;
@@ -239,8 +198,6 @@
       max-width: 80%;
       text-shadow: 0 1px 1px rgba(0,0,0,0.2);
     }
-
-    /* ================== الأقسام القابلة للطي (أزرق فاتح أصلي) ================== */
     .tips-module, .features-module {
       width: 100%;
       background: rgba(0, 0, 0, 0.45);
@@ -251,7 +208,6 @@
       border: 1px solid rgba(100, 200, 255, 0.25);
       transition: all 0.2s ease;
     }
-
     .toggle-btn {
       width: 100%;
       background: none;
@@ -268,18 +224,12 @@
       font-family: inherit;
       gap: 1rem;
     }
-
-    .toggle-btn:active {
-      background: rgba(100, 200, 255, 0.3);
-      transition: 0.05s;
-    }
-
+    .toggle-btn:active { background: rgba(100, 200, 255, 0.3); transition: 0.05s; }
     .toggle-text { flex: 1; text-align: center; letter-spacing: 0.3px; }
     .toggle-icon i {
       transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       will-change: transform;
     }
-
     .toggle-content {
       max-height: 0;
       overflow: hidden;
@@ -287,16 +237,13 @@
       will-change: max-height;
       padding: 0 1.5rem;
     }
-
     .toggle-btn.open .toggle-icon i { transform: rotate(180deg); }
     .toggle-btn:not(.open) .toggle-icon { animation: gentlePulse 1.5s infinite; }
-
     @keyframes gentlePulse {
       0% { opacity: 0.6; transform: translateY(0); }
       50% { opacity: 1; transform: translateY(2px); }
       100% { opacity: 0.6; transform: translateY(0); }
     }
-
     .tips-list, .features-list {
       list-style: none;
       padding: 0.5rem 0 0.2rem;
@@ -317,7 +264,6 @@
       font-size: 0.9rem;
       margin-top: 0.2rem;
     }
-
     .bonus-tip {
       display: flex;
       align-items: center;
@@ -329,8 +275,6 @@
       padding-top: 0.7rem;
     }
     .bonus-tip i { font-size: 1rem; color: #a0c4ff; }
-
-    /* ================== نافذة المشاركة ================== */
     .share-modal {
       position: fixed;
       bottom: -100%;
@@ -349,11 +293,7 @@
       flex-direction: column;
       overflow: hidden;
     }
-
-    .share-modal.show {
-      bottom: 0;
-    }
-
+    .share-modal.show { bottom: 0; }
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -361,7 +301,6 @@
       padding: 1rem 1rem 0.5rem;
       border-bottom: 1px solid #eee;
     }
-
     .modal-close {
       background: none;
       border: none;
@@ -374,7 +313,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .modal-title {
       flex: 1;
       text-align: center;
@@ -383,7 +321,6 @@
       color: #333;
       margin-right: -32px;
     }
-
     .modal-body {
       flex: 1;
       padding: 1rem;
@@ -392,7 +329,6 @@
       align-items: center;
       overflow-y: auto;
     }
-
     .share-profile-card {
       background: #2c2c2e;
       border-radius: 30px;
@@ -402,7 +338,6 @@
       text-align: center;
       margin-bottom: 1.5rem;
     }
-
     .share-avatar {
       width: 70px;
       height: 70px;
@@ -411,14 +346,12 @@
       border: 0.3px solid;
       margin-bottom: 0.5rem;
     }
-
     .share-name {
       font-size: 1.2rem;
       font-weight: bold;
       color: white;
       margin-bottom: -0.2rem;
     }
-
     .share-badge {
       font-size: 0.8rem;
       color: #ffffff;
@@ -426,8 +359,6 @@
       padding: 0.2rem 0.8rem;
       border-radius: 20px;
     }
-
-    /* شبكة أيقونات المشاركة */
     .share-icons-grid {
       display: flex;
       flex-direction: row;
@@ -439,7 +370,6 @@
       direction: ltr;
       overflow: visible;
     }
-
     .share-icon-item {
       flex-shrink: 0;
       display: flex;
@@ -452,13 +382,8 @@
       transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       will-change: transform;
     }
-    .share-icon-item:hover {
-      transform: scale(1.05);
-    }
-    .share-icon-item:active {
-      transform: scale(0.95);
-    }
-
+    .share-icon-item:hover { transform: scale(1.05); }
+    .share-icon-item:active { transform: scale(0.95); }
     .icon-circle {
       width: 60px;
       height: 60px;
@@ -471,23 +396,13 @@
       margin-bottom: 0.4rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
-    .icon-name {
-      font-size: 0.7rem;
-      color: #333;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    /* ألوان التطبيقات */
+    .icon-name { font-size: 0.7rem; color: #333; font-weight: 500; text-align: center; }
     .circle-copy { background: #2c2c2e; }
     .circle-x { background: #000000; }
     .circle-facebook { background: #1877f2; }
     .circle-whatsapp { background: #25d366; }
     .circle-messenger { background: #0084ff; }
     .circle-snapchat { background: #fffc00; color: #000; }
-
-    /* ================== حقوق النشر ================== */
     .copyright {
       margin-top: 2rem;
       padding: 1rem 0 0.5rem;
@@ -497,13 +412,9 @@
       border-top: 1px solid rgba(255,255,255,0.2);
       font-family: 'Inter', monospace;
     }
-
-    /* ================== استجابة للهواتف ================== */
     @media (max-width: 550px) {
       body { padding: 1rem; }
-      .avatar-container {
-        margin-top: 110px;
-      }
+      .avatar-container { margin-top: 110px; }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
       .share-profile-card { width: 95%; }
@@ -517,40 +428,36 @@
 <body>
   <div class="animated-bg"></div>
 
-  <!-- زر المشاركة -->
   <div class="share-btn" id="shareBtn">
     <i class="fas fa-arrow-up-from-bracket"></i>
   </div>
 
-  <!-- صورة البروفايل (الصفحة الرئيسية) -->
+  <!-- ✅ صورة البروفايل (الصفحة الرئيسية) – استخدم رابط Imgur مضمون -->
   <div class="avatar-container">
     <img class="avatar" 
-         src="https://i.postimg.cc/kX8krpMb/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
+         src="https://i.imgur.com/5S5y6kU.jpg" 
          referrerpolicy="no-referrer" 
          crossorigin="anonymous"
-         onerror="this.onerror=null; this.src='https://i.imgur.com/5S5y6kU.jpg'">
+         alt="Profile">
     <div class="avatar-glow"></div>
   </div>
 
   <main class="card">
     <h1 class="name">l.lvz</h1>
     <div class="badge">Eng.Maytham</div>
-
     <div class="tags">
       <span class="tag"><i class="fas fa-microscope"></i> هندسة أجهزة طبية 🎓</span>
       <span class="tag"><i class="fas fa-shield-haltered"></i> أمن سيبراني 🛡</span>
     </div>
-
     <div class="ig-icon" id="instaIcon">
       <i class="fab fa-instagram"></i>
     </div>
-
     <div class="verse">
       <i class="fas fa-quote-right"></i>
       <p>﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</p>
     </div>
 
-    <!-- قسم النصائح -->
+    <!-- قسم النصائح (نفس المحتوى) -->
     <div class="tips-module">
       <button class="toggle-btn" id="tipsToggle">
         <span class="toggle-text">نصائح لتأمين حساباتك</span>
@@ -592,7 +499,6 @@
             <li>أرفق لقطة شاشة للمتابعين وأرسل الطلب. انتظر 24–48 ساعة.</li>
           </ol>
         </div>
-
         <ul class="features-list">
           <li><i class="fas fa-robot"></i> <strong>منع استخدام محادثاتك لتدريب الذكاء الاصطناعي في إنستغرام</strong></li>
         </ul>
@@ -685,11 +591,12 @@
     </div>
     <div class="modal-body">
       <div class="share-profile-card">
+        <!-- ✅ صورة البروفايل في نافذة المشاركة (نفس الرابط المضمون) -->
         <img class="share-avatar" 
-             src="https://i.postimg.cc/kX8krpMb/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
+             src="https://i.imgur.com/5S5y6kU.jpg" 
              referrerpolicy="no-referrer" 
              crossorigin="anonymous"
-             onerror="this.onerror=null; this.src='https://i.imgur.com/5S5y6kU.jpg'">
+             alt="Profile">
         <div class="share-name">l.lvz</div>
         <div class="share-badge">Eng.Maytham</div>
       </div>
@@ -723,10 +630,8 @@
   </div>
 
   <script>
-    // تأثير اختفاء زر المشاركة عند التمرير
     let lastScrollY = window.scrollY;
     const shareBtn = document.getElementById('shareBtn');
-
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
@@ -738,20 +643,12 @@
       lastScrollY = currentScrollY;
     });
 
-    // فتح/إغلاق نافذة المشاركة
     const modal = document.getElementById('shareModal');
     const closeModal = document.getElementById('closeModalBtn');
-    shareBtn.addEventListener('click', () => {
-      modal.classList.add('show');
-    });
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show');
-    });
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('show');
-    });
+    shareBtn.addEventListener('click', () => { modal.classList.add('show'); });
+    closeModal.addEventListener('click', () => { modal.classList.remove('show'); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
 
-    // أيقونة إنستغرام
     const instaIcon = document.getElementById('instaIcon');
     const instaUrl = 'https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr';
     instaIcon.addEventListener('click', () => {
@@ -760,84 +657,44 @@
       window.open(instaUrl, '_blank');
     });
 
-    // وظائف المشاركة
     const currentUrl = window.location.href;
-
     document.getElementById('copyLinkBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(currentUrl).then(() => {
-        alert('تم نسخ الرابط إلى الحافظة');
-      });
+      navigator.clipboard.writeText(currentUrl).then(() => alert('تم نسخ الرابط إلى الحافظة'));
     });
+    function shareTo(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
+    document.getElementById('twitterBtn').addEventListener('click', () => shareTo(`https://twitter.com/intent/tweet?text=تصفح موقع l.lvz للأمن السيبراني&url=${encodeURIComponent(currentUrl)}`));
+    document.getElementById('facebookBtn').addEventListener('click', () => shareTo(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`));
+    document.getElementById('whatsappBtn').addEventListener('click', () => shareTo(`https://wa.me/?text=${encodeURIComponent('تصفح موقع l.lvz للأمن السيبراني: ' + currentUrl)}`));
+    document.getElementById('messengerBtn').addEventListener('click', () => shareTo(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(currentUrl)}`));
+    document.getElementById('snapchatBtn').addEventListener('click', () => window.open('https://www.snapchat.com/add', '_blank'));
 
-    function shareTo(url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-
-    document.getElementById('twitterBtn').addEventListener('click', () => {
-      shareTo(`https://twitter.com/intent/tweet?text=تصفح موقع l.lvz للأمن السيبراني&url=${encodeURIComponent(currentUrl)}`);
-    });
-    document.getElementById('facebookBtn').addEventListener('click', () => {
-      shareTo(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`);
-    });
-    document.getElementById('whatsappBtn').addEventListener('click', () => {
-      shareTo(`https://wa.me/?text=${encodeURIComponent('تصفح موقع l.lvz للأمن السيبراني: ' + currentUrl)}`);
-    });
-    document.getElementById('messengerBtn').addEventListener('click', () => {
-      shareTo(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(currentUrl)}`);
-    });
-    document.getElementById('snapchatBtn').addEventListener('click', () => {
-      window.open('https://www.snapchat.com/add', '_blank');
-    });
-
-    // وظائف الأقسام القابلة للطي
     const tipsToggle = document.getElementById('tipsToggle');
     const tipsContent = document.getElementById('tipsContent');
     tipsToggle.addEventListener('click', () => {
       const isOpen = tipsContent.style.maxHeight && tipsContent.style.maxHeight !== '0px';
-      if (isOpen) {
-        tipsContent.style.maxHeight = '0px';
-        tipsToggle.classList.remove('open');
-      } else {
-        tipsContent.style.maxHeight = tipsContent.scrollHeight + 'px';
-        tipsToggle.classList.add('open');
-      }
+      tipsContent.style.maxHeight = isOpen ? '0px' : tipsContent.scrollHeight + 'px';
+      tipsToggle.classList.toggle('open', !isOpen);
     });
-
     const featuresToggle = document.getElementById('featuresToggle');
     const featuresContent = document.getElementById('featuresContent');
     featuresToggle.addEventListener('click', () => {
       const isOpen = featuresContent.style.maxHeight && featuresContent.style.maxHeight !== '0px';
-      if (isOpen) {
-        featuresContent.style.maxHeight = '0px';
-        featuresToggle.classList.remove('open');
-      } else {
-        featuresContent.style.maxHeight = featuresContent.scrollHeight + 'px';
-        featuresToggle.classList.add('open');
-      }
+      featuresContent.style.maxHeight = isOpen ? '0px' : featuresContent.scrollHeight + 'px';
+      featuresToggle.classList.toggle('open', !isOpen);
     });
-
     const iosToggle = document.getElementById('iosFeaturesToggle');
     const iosContent = document.getElementById('iosFeaturesContent');
     iosToggle.addEventListener('click', () => {
       const isOpen = iosContent.style.maxHeight && iosContent.style.maxHeight !== '0px';
-      if (isOpen) {
-        iosContent.style.maxHeight = '0px';
-        iosToggle.classList.remove('open');
-      } else {
-        iosContent.style.maxHeight = iosContent.scrollHeight + 'px';
-        iosToggle.classList.add('open');
-      }
+      iosContent.style.maxHeight = isOpen ? '0px' : iosContent.scrollHeight + 'px';
+      iosToggle.classList.toggle('open', !isOpen);
     });
-
     const btns = document.querySelectorAll('.toggle-btn');
     btns.forEach(btn => {
       btn.addEventListener('mousedown', () => {
         btn.style.transition = 'background 0.05s';
         btn.style.background = 'rgba(100, 200, 255, 0.3)';
-        setTimeout(() => {
-          btn.style.background = '';
-          btn.style.transition = '';
-        }, 100);
+        setTimeout(() => { btn.style.background = ''; btn.style.transition = ''; }, 100);
       });
     });
   </script>
