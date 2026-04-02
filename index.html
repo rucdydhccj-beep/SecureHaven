@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <!-- منع إرسال عنوان الصفحة المرجعي لضمان ظهور الصور في كل المتصفحات -->
+  <!-- ✅ منع إرسال المرجع لضمان ظهور الصور في كل المتصفحات -->
   <meta name="referrer" content="no-referrer">
   <title>l.lvz | مهندس الأمن السيبراني</title>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -42,7 +42,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-color: #0a0f1a; /* fallback color */
+      background-color: #0a0f1a;
     }
 
     body::after {
@@ -89,7 +89,7 @@
       position: relative;
       width: clamp(90px, 25vw, 120px);
       height: clamp(90px, 25vw, 120px);
-      /* مسافة ثابتة من أعلى الصفحة لجميع الشاشات */
+      /* المسافة الثابتة من أعلى الصفحة لجميع الشاشات */
       margin: 110px auto 1rem;
       z-index: 1;
       display: flex;
@@ -503,7 +503,7 @@
     @media (max-width: 550px) {
       body { padding: 1rem; }
       .avatar-container {
-        margin-top: 110px; /* نفس المسافة الثابتة */
+        margin-top: 110px; /* المسافة الثابتة */
       }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
@@ -523,13 +523,13 @@
     <i class="fas fa-arrow-up-from-bracket"></i>
   </div>
 
-  <!-- صورة البروفايل (الرابط الأصلي مع إعدادات تمنع الحجب) -->
+  <!-- صورة البروفايل (الرابط الأصلي مع إعدادات تضمن الظهور في كل المتصفحات) -->
   <div class="avatar-container">
-    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
-         alt="Profile" 
+    <img class="avatar" 
+         src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
          referrerpolicy="no-referrer" 
          crossorigin="anonymous"
-         onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+         onerror="this.onerror=null; this.src='https://i.imgur.com/5S5y6kU.jpg'">
     <div class="avatar-glow"></div>
   </div>
 
@@ -686,11 +686,11 @@
     </div>
     <div class="modal-body">
       <div class="share-profile-card">
-        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
-             alt="Profile" 
+        <img class="share-avatar" 
+             src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" 
              referrerpolicy="no-referrer" 
              crossorigin="anonymous"
-             onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
+             onerror="this.onerror=null; this.src='https://i.imgur.com/5S5y6kU.jpg'">
         <div class="share-name">l.lvz</div>
         <div class="share-badge">Eng.Maytham</div>
       </div>
