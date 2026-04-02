@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="referrer" content="no-referrer">
   <title>l.lvz | مهندس الأمن السيبراني</title>
+  <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* نفس الـ CSS السابق (لم يتغير) */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ================== إعدادات عامة ================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       min-height: 100vh;
       font-family: 'Tajawal', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -19,8 +26,10 @@
       padding: 2rem;
       position: relative;
       color: #fff;
-      background: transparent;
+      background: transparent; 
     }
+
+    /* ================== الخلفية العامة ================== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -28,13 +37,13 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      /* ✅ استبدل هذا الرابط برابط خلفيتك بعد رفعها على Imgur */
-      background-image: url('https://i.imgur.com/DJb8y8A.jpg');
+      background-image: url('https://i.postimg.cc/fTvCBDfV/5840674512057784.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-color: #0a0f1a;
+      background-color: #0a0f1a; /* fallback color */
     }
+
     body::after {
       content: "";
       position: fixed;
@@ -46,6 +55,8 @@
       z-index: -1;
       pointer-events: none;
     }
+
+    /* ================== زر المشاركة (ثابت أعلى اليمين) ================== */
     .share-btn {
       position: fixed;
       top: 1rem;
@@ -53,31 +64,37 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #e0e0e0;
+      background: #e0e0e0;  /* لون رصاصي فاتح */
       backdrop-filter: none;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.3rem;
-      color: #000;
+      color: #000;          /* أيقونة سوداء */
       cursor: pointer;
       transition: opacity 0.2s ease, transform 0.2s;
       z-index: 1000;
       opacity: 1;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .share-btn:hover { background: #d0d0d0; transform: scale(1.02); }
+    .share-btn:hover {
+      background: #d0d0d0;
+      transform: scale(1.02);
+    }
+
+    /* ================== صورة البروفايل ================== */
     .avatar-container {
       position: relative;
       width: clamp(90px, 25vw, 120px);
       height: clamp(90px, 25vw, 120px);
-      margin: 110px auto 1rem;
+      margin: 4rem auto 1rem;/* نزول كامل المحتوى */
       z-index: 1;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .avatar {
       width: 90%;
       height: 90%;
@@ -88,7 +105,9 @@
       transition: transform 0.2s;
       background: #2a2f3b;
     }
+
     .avatar:hover { transform: scale(1.02); }
+
     .avatar-glow {
       position: absolute;
       top: -5px; left: -5px; right: -5px; bottom: -5px;
@@ -100,6 +119,8 @@
       transition: opacity 0.3s;
     }
     .avatar-container:hover .avatar-glow { opacity: 0.8; }
+
+    /* ================== البطاقة التي تحتوي على باقي المحتوى ================== */
     .card {
       max-width: 680px;
       width: 100%;
@@ -111,6 +132,8 @@
       border: none;
       box-shadow: none;
     }
+
+    /* ================== النصوص الرئيسية ================== */
     .name {
       font-size: 2.3rem !important;
       font-weight: 500;
@@ -122,6 +145,7 @@
       letter-spacing: -0.5px;
       line-height: 0.8;
     }
+
     .badge {
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
       font-weight: 500;
@@ -134,6 +158,8 @@
       backdrop-filter: blur(4px);
       font-family: 'Hoefler Text', serif;
     }
+
+    /* ================== التاغات ================== */
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -141,6 +167,7 @@
       gap: 0.6rem;
       margin-bottom: 1rem;
     }
+
     .tag {
       background: rgba(100, 200, 255, 0.08);
       border: 1px solid rgba(100, 200, 255, 0.2);
@@ -148,23 +175,35 @@
       padding: 0.4rem 1rem;
       font-size: clamp(0.75rem, 3vw, 0.85rem);
       font-weight: 500;
-      color: #a0c4ff;
+      color: #f0f0f0;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       backdrop-filter: blur(4px);
-      transition: none;
+      transition: 0.2s;
     }
     .tag i { color: #a0c4ff; }
-    .ig-icon {
-      font-size: clamp(1.8rem, 6vw, 2.2rem);
-      margin: 0.6rem 0 2rem;
-      color: #fff;
-      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      display: inline-block;
-      cursor: pointer;
+    .tag:hover {
+      background: rgba(100, 200, 255, 0.15);
+      border-color: rgba(100, 200, 255, 0.4);
     }
-    .ig-icon:active { transform: scale(1.1); transition: 0.05s; }
+
+    /* أيقونة إنستغرام (رابط) */
+    .ig-icon {
+  font-size: clamp(1.8rem, 6vw, 2.2rem); /* حجم مشابه للمواقع الرسمية */
+  margin: 0.6rem 0 2rem;                /* المسافة من الأعلى والأسفل */
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  display: inline-block;
+  cursor: pointer;
+}
+
+    .ig-icon:active {
+      transform: scale(1.1);
+      transition: 0.05s;
+    }
+
+    /* ================== الآية والمقدمة ================== */
     .verse, .intro {
       display: flex;
       align-items: center;
@@ -177,10 +216,15 @@
       border: none;
       box-shadow: none;
     }
-    .verse i, .intro i { color: #a0c4ff; font-size: 1rem; }
+
+    .verse i, .intro i {
+      color: #a0c4ff;
+      font-size: 1rem;
+    }
     .verse i { display: none; }
     .verse { margin-bottom: 3.5rem; margin-top: 0.5rem; }
     .intro { margin: 0.8rem 0; }
+
     .verse p {
       font-size: clamp(0.9rem, 3.5vw, 1rem);
       font-weight: 500;
@@ -189,6 +233,7 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
       font-family: 'Amiri', serif;
     }
+
     .intro p {
       font-size: clamp(0.8rem, 3vw, 0.9rem);
       color: #ddd;
@@ -198,16 +243,20 @@
       max-width: 80%;
       text-shadow: 0 1px 1px rgba(0,0,0,0.2);
     }
+
+    /* ================== الأقسام القابلة للطي ================== */
     .tips-module, .features-module {
       width: 100%;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(12px);
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      margin-bottom: 15px;
       margin: 1.2rem 0;
       overflow: hidden;
-      border: 1px solid rgba(100, 200, 255, 0.25);
-      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
     }
+
     .toggle-btn {
       width: 100%;
       background: none;
@@ -224,12 +273,18 @@
       font-family: inherit;
       gap: 1rem;
     }
-    .toggle-btn:active { background: rgba(100, 200, 255, 0.3); transition: 0.05s; }
+
+    .toggle-btn:active {
+      background: rgba(100, 200, 255, 0.3);
+      transition: 0.05s;
+    }
+
     .toggle-text { flex: 1; text-align: center; letter-spacing: 0.3px; }
     .toggle-icon i {
       transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       will-change: transform;
     }
+
     .toggle-content {
       max-height: 0;
       overflow: hidden;
@@ -237,13 +292,16 @@
       will-change: max-height;
       padding: 0 1.5rem;
     }
+
     .toggle-btn.open .toggle-icon i { transform: rotate(180deg); }
     .toggle-btn:not(.open) .toggle-icon { animation: gentlePulse 1.5s infinite; }
+
     @keyframes gentlePulse {
       0% { opacity: 0.6; transform: translateY(0); }
       50% { opacity: 1; transform: translateY(2px); }
       100% { opacity: 0.6; transform: translateY(0); }
     }
+
     .tips-list, .features-list {
       list-style: none;
       padding: 0.5rem 0 0.2rem;
@@ -264,6 +322,7 @@
       font-size: 0.9rem;
       margin-top: 0.2rem;
     }
+
     .bonus-tip {
       display: flex;
       align-items: center;
@@ -275,6 +334,8 @@
       padding-top: 0.7rem;
     }
     .bonus-tip i { font-size: 1rem; color: #a0c4ff; }
+
+    /* ================== نافذة المشاركة ================== */
     .share-modal {
       position: fixed;
       bottom: -100%;
@@ -293,7 +354,11 @@
       flex-direction: column;
       overflow: hidden;
     }
-    .share-modal.show { bottom: 0; }
+
+    .share-modal.show {
+      bottom: 0;
+    }
+
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -301,6 +366,7 @@
       padding: 1rem 1rem 0.5rem;
       border-bottom: 1px solid #eee;
     }
+
     .modal-close {
       background: none;
       border: none;
@@ -313,6 +379,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .modal-title {
       flex: 1;
       text-align: center;
@@ -321,6 +388,7 @@
       color: #333;
       margin-right: -32px;
     }
+
     .modal-body {
       flex: 1;
       padding: 1rem;
@@ -329,6 +397,7 @@
       align-items: center;
       overflow-y: auto;
     }
+
     .share-profile-card {
       background: #2c2c2e;
       border-radius: 30px;
@@ -338,6 +407,7 @@
       text-align: center;
       margin-bottom: 1.5rem;
     }
+
     .share-avatar {
       width: 70px;
       height: 70px;
@@ -346,12 +416,14 @@
       border: 0.3px solid;
       margin-bottom: 0.5rem;
     }
+
     .share-name {
       font-size: 1.2rem;
       font-weight: bold;
       color: white;
       margin-bottom: -0.2rem;
     }
+
     .share-badge {
       font-size: 0.8rem;
       color: #ffffff;
@@ -359,6 +431,8 @@
       padding: 0.2rem 0.8rem;
       border-radius: 20px;
     }
+
+    /* شبكة أيقونات المشاركة – سطر واحد أفقي من اليسار إلى اليمين */
     .share-icons-grid {
       display: flex;
       flex-direction: row;
@@ -368,8 +442,9 @@
       padding-bottom: 0.5rem;
       width: 100%;
       direction: ltr;
-      overflow: visible;
+      overflow: visible; /* يسمح للأيقونات بالتكبير دون قص */ 
     }
+
     .share-icon-item {
       flex-shrink: 0;
       display: flex;
@@ -377,13 +452,19 @@
       align-items: center;
       width: 70px;
       cursor: pointer;
+      transition: transform 0.2s;
       overflow: visible;
       transform-origin: center center;
       transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       will-change: transform;
     }
-    .share-icon-item:hover { transform: scale(1.05); }
-    .share-icon-item:active { transform: scale(0.95); }
+    .share-icon-item:hover {
+      transform: scale(1.05);
+    }
+    .share-icon-item:active {
+      transform: scale(0.95);
+    }
+
     .icon-circle {
       width: 60px;
       height: 60px;
@@ -396,25 +477,28 @@
       margin-bottom: 0.4rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .icon-name { font-size: 0.7rem; color: #333; font-weight: 500; text-align: center; }
+
+    .icon-name {
+      font-size: 0.7rem;
+      color: #333;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* ألوان التطبيقات */
     .circle-copy { background: #2c2c2e; }
     .circle-x { background: #000000; }
     .circle-facebook { background: #1877f2; }
     .circle-whatsapp { background: #25d366; }
     .circle-messenger { background: #0084ff; }
     .circle-snapchat { background: #fffc00; color: #000; }
-    .copyright {
-      margin-top: 2rem;
-      padding: 1rem 0 0.5rem;
-      text-align: center;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.6);
-      border-top: 1px solid rgba(255,255,255,0.2);
-      font-family: 'Inter', monospace;
-    }
+
+    /* ================== استجابة للهواتف ================== */
     @media (max-width: 550px) {
       body { padding: 1rem; }
-      .avatar-container { margin-top: 110px; }
+      .avatar-container {
+        margin-top: 1.5rem;   /* نزول مناسب للهواتف */
+      }
       .verse p, .intro p { max-width: 95%; }
       .toggle-btn { padding: 0.8rem 1rem; }
       .share-profile-card { width: 95%; }
@@ -428,36 +512,37 @@
 <body>
   <div class="animated-bg"></div>
 
+  <!-- زر المشاركة (ثابت أعلى اليمين) -->
   <div class="share-btn" id="shareBtn">
-    <i class="fas fa-arrow-up-from-bracket"></i>
+    <i class="fas fa-arrow-up-from-bracket"></i> <!-- أيقونة مربع بسهم للأعلى (تصدير/مشاركة) -->
   </div>
 
-  <!-- ✅ صورة البروفايل (الصفحة الرئيسية) – استخدم رابط Imgur مضمون -->
+  <!-- صورة البروفايل -->
   <div class="avatar-container">
-    <img class="avatar" 
-         src="https://i.imgur.com/5S5y6kU.jpg" 
-         referrerpolicy="no-referrer" 
-         crossorigin="anonymous"
-         alt="Profile">
+    <img class="avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7fa0f7b?w=200&h=200&fit=crop';">
     <div class="avatar-glow"></div>
   </div>
 
   <main class="card">
     <h1 class="name">l.lvz</h1>
     <div class="badge">Eng.Maytham</div>
+
     <div class="tags">
       <span class="tag"><i class="fas fa-microscope"></i> هندسة أجهزة طبية 🎓</span>
       <span class="tag"><i class="fas fa-shield-haltered"></i> أمن سيبراني 🛡</span>
     </div>
+
+    <!-- أيقونة إنستغرام (رابط) -->
     <div class="ig-icon" id="instaIcon">
       <i class="fab fa-instagram"></i>
     </div>
+
     <div class="verse">
       <i class="fas fa-quote-right"></i>
       <p>﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</p>
     </div>
 
-    <!-- قسم النصائح (نفس المحتوى) -->
+    <!-- قسم النصائح -->
     <div class="tips-module">
       <button class="toggle-btn" id="tipsToggle">
         <span class="toggle-text">نصائح لتأمين حساباتك</span>
@@ -499,6 +584,7 @@
             <li>أرفق لقطة شاشة للمتابعين وأرسل الطلب. انتظر 24–48 ساعة.</li>
           </ol>
         </div>
+
         <ul class="features-list">
           <li><i class="fas fa-robot"></i> <strong>منع استخدام محادثاتك لتدريب الذكاء الاصطناعي في إنستغرام</strong></li>
         </ul>
@@ -515,13 +601,14 @@
       </div>
     </div>
 
-    <!-- قسم ميزات الآيفون -->
+    <!-- قسم جديد: ميزات في الآيفون للحماية -->
     <div class="features-module">
       <button class="toggle-btn" id="iosFeaturesToggle">
         <span class="toggle-text">ميزات في الآيفون للحماية</span>
         <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
       </button>
       <div class="toggle-content" id="iosFeaturesContent">
+        <!-- الميزة الأولى: نمط المنع (Lockdown Mode) -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-shield-alt" style="color: #ffd966;"></i>
@@ -535,6 +622,7 @@
             <li>أعد تشغيل الجهاز (سيطلب لإكمال التفعيل).</li>
           </ol>
         </div>
+        <!-- الميزة الثانية: حماية الجهاز المسروق -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-lock" style="color: #ffd966;"></i>
@@ -548,6 +636,7 @@
             <li>فعّل الخيار (يجب أن يكون التفعيل تلقائياً في iOS 26.3.1، تأكد من أنه "تشغيل").</li>
           </ol>
         </div>
+        <!-- الميزة الثالثة: حماية البيانات المتقدمة -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-cloud-upload-alt" style="color: #ffd966;"></i>
@@ -561,6 +650,7 @@
             <li>بعد الإعداد، قم بتشغيل الميزة.</li>
           </ol>
         </div>
+        <!-- الميزة الرابعة: العثور على iPhone -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
             <i class="fas fa-map-marker-alt" style="color: #ffd966;"></i>
@@ -576,10 +666,6 @@
         </div>
       </div>
     </div>
-
-    <div class="copyright">
-      © ENG. MAYTHAM | ALL RIGHTS RESERVED
-    </div>
   </main>
 
   <!-- نافذة المشاركة -->
@@ -591,36 +677,37 @@
     </div>
     <div class="modal-body">
       <div class="share-profile-card">
-        <!-- ✅ صورة البروفايل في نافذة المشاركة (نفس الرابط المضمون) -->
-        <img class="share-avatar" 
-             src="https://i.imgur.com/5S5y6kU.jpg" 
-             referrerpolicy="no-referrer" 
-             crossorigin="anonymous"
-             alt="Profile">
+        <img class="share-avatar" src="https://i.postimg.cc/mrdbY4Cd/mhnds-alshhadt-(ʿly-alkhamnyy).jpg" alt="Profile">
         <div class="share-name">l.lvz</div>
         <div class="share-badge">Eng.Maytham</div>
       </div>
       <div class="share-icons-grid">
+        <!-- Copy Linktree -->
         <div class="share-icon-item" id="copyLinkBtn">
           <div class="icon-circle circle-copy"><i class="fas fa-link"></i></div>
           <div class="icon-name">Copy Linktree</div>
         </div>
+        <!-- X (Twitter) -->
         <div class="share-icon-item" id="twitterBtn">
           <div class="icon-circle circle-x"><i class="fab fa-twitter"></i></div>
           <div class="icon-name">X</div>
         </div>
+        <!-- Facebook -->
         <div class="share-icon-item" id="facebookBtn">
           <div class="icon-circle circle-facebook"><i class="fab fa-facebook-f"></i></div>
           <div class="icon-name">Facebook</div>
         </div>
+        <!-- WhatsApp -->
         <div class="share-icon-item" id="whatsappBtn">
           <div class="icon-circle circle-whatsapp"><i class="fab fa-whatsapp"></i></div>
           <div class="icon-name">WhatsApp</div>
         </div>
+        <!-- Messenger -->
         <div class="share-icon-item" id="messengerBtn">
           <div class="icon-circle circle-messenger"><i class="fab fa-facebook-messenger"></i></div>
           <div class="icon-name">Messenger</div>
         </div>
+        <!-- Snapchat -->
         <div class="share-icon-item" id="snapchatBtn">
           <div class="icon-circle circle-snapchat"><i class="fab fa-snapchat-ghost"></i></div>
           <div class="icon-name">Snapchat</div>
@@ -630,25 +717,37 @@
   </div>
 
   <script>
+    // تأثير اختفاء زر المشاركة عند التمرير لأسفل وظهوره عند التمرير لأعلى
     let lastScrollY = window.scrollY;
     const shareBtn = document.getElementById('shareBtn');
+
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // تمرير لأسفل: إخفاء سريع
         shareBtn.style.opacity = '0';
         shareBtn.style.transition = 'opacity 0.15s ease';
       } else {
+        // تمرير لأعلى: إظهار
         shareBtn.style.opacity = '1';
       }
       lastScrollY = currentScrollY;
     });
 
+    // فتح/إغلاق نافذة المشاركة
     const modal = document.getElementById('shareModal');
     const closeModal = document.getElementById('closeModalBtn');
-    shareBtn.addEventListener('click', () => { modal.classList.add('show'); });
-    closeModal.addEventListener('click', () => { modal.classList.remove('show'); });
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+    shareBtn.addEventListener('click', () => {
+      modal.classList.add('show');
+    });
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('show');
+    });
 
+    // أيقونة إنستغرام: رابط مع تأثير تكبير
     const instaIcon = document.getElementById('instaIcon');
     const instaUrl = 'https://www.instagram.com/l.lvz?igsh=MXIyZWZnMzFubm95Yg%3D%3D&utm_source=qr';
     instaIcon.addEventListener('click', () => {
@@ -657,46 +756,87 @@
       window.open(instaUrl, '_blank');
     });
 
+    // وظائف المشاركة
     const currentUrl = window.location.href;
-    document.getElementById('copyLinkBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(currentUrl).then(() => alert('تم نسخ الرابط إلى الحافظة'));
-    });
-    function shareTo(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
-    document.getElementById('twitterBtn').addEventListener('click', () => shareTo(`https://twitter.com/intent/tweet?text=تصفح موقع l.lvz للأمن السيبراني&url=${encodeURIComponent(currentUrl)}`));
-    document.getElementById('facebookBtn').addEventListener('click', () => shareTo(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`));
-    document.getElementById('whatsappBtn').addEventListener('click', () => shareTo(`https://wa.me/?text=${encodeURIComponent('تصفح موقع l.lvz للأمن السيبراني: ' + currentUrl)}`));
-    document.getElementById('messengerBtn').addEventListener('click', () => shareTo(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(currentUrl)}`));
-    document.getElementById('snapchatBtn').addEventListener('click', () => window.open('https://www.snapchat.com/add', '_blank'));
 
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        alert('تم نسخ الرابط إلى الحافظة');
+      });
+    });
+
+    function shareTo(url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    document.getElementById('twitterBtn').addEventListener('click', () => {
+      shareTo(`https://twitter.com/intent/tweet?text=تصفح موقع l.lvz للأمن السيبراني&url=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('facebookBtn').addEventListener('click', () => {
+      shareTo(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('whatsappBtn').addEventListener('click', () => {
+      shareTo(`https://wa.me/?text=${encodeURIComponent('تصفح موقع l.lvz للأمن السيبراني: ' + currentUrl)}`);
+    });
+    document.getElementById('messengerBtn').addEventListener('click', () => {
+      shareTo(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=123456789&redirect_uri=${encodeURIComponent(currentUrl)}`);
+    });
+    document.getElementById('snapchatBtn').addEventListener('click', () => {
+      window.open('https://www.snapchat.com/add', '_blank');
+    });
+
+    // النصائح والميزات
     const tipsToggle = document.getElementById('tipsToggle');
     const tipsContent = document.getElementById('tipsContent');
     tipsToggle.addEventListener('click', () => {
       const isOpen = tipsContent.style.maxHeight && tipsContent.style.maxHeight !== '0px';
-      tipsContent.style.maxHeight = isOpen ? '0px' : tipsContent.scrollHeight + 'px';
-      tipsToggle.classList.toggle('open', !isOpen);
+      if (isOpen) {
+        tipsContent.style.maxHeight = '0px';
+        tipsToggle.classList.remove('open');
+      } else {
+        tipsContent.style.maxHeight = tipsContent.scrollHeight + 'px';
+        tipsToggle.classList.add('open');
+      }
     });
+
     const featuresToggle = document.getElementById('featuresToggle');
     const featuresContent = document.getElementById('featuresContent');
     featuresToggle.addEventListener('click', () => {
       const isOpen = featuresContent.style.maxHeight && featuresContent.style.maxHeight !== '0px';
-      featuresContent.style.maxHeight = isOpen ? '0px' : featuresContent.scrollHeight + 'px';
-      featuresToggle.classList.toggle('open', !isOpen);
+      if (isOpen) {
+        featuresContent.style.maxHeight = '0px';
+        featuresToggle.classList.remove('open');
+      } else {
+        featuresContent.style.maxHeight = featuresContent.scrollHeight + 'px';
+        featuresToggle.classList.add('open');
+      }
     });
+
+    // قسم ميزات الآيفون
     const iosToggle = document.getElementById('iosFeaturesToggle');
     const iosContent = document.getElementById('iosFeaturesContent');
     iosToggle.addEventListener('click', () => {
       const isOpen = iosContent.style.maxHeight && iosContent.style.maxHeight !== '0px';
-      iosContent.style.maxHeight = isOpen ? '0px' : iosContent.scrollHeight + 'px';
-      iosToggle.classList.toggle('open', !isOpen);
+      if (isOpen) {
+        iosContent.style.maxHeight = '0px';
+        iosToggle.classList.remove('open');
+      } else {
+        iosContent.style.maxHeight = iosContent.scrollHeight + 'px';
+        iosToggle.classList.add('open');
+      }
     });
+
     const btns = document.querySelectorAll('.toggle-btn');
     btns.forEach(btn => {
       btn.addEventListener('mousedown', () => {
         btn.style.transition = 'background 0.05s';
         btn.style.background = 'rgba(100, 200, 255, 0.3)';
-        setTimeout(() => { btn.style.background = ''; btn.style.transition = ''; }, 100);
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.style.transition = '';
+        }, 100);
       });
     });
   </script>
 </body>
-</html>
+  </html>
